@@ -42,8 +42,6 @@ module pipelined_adder_8bit (
     wire [3:0] stage2_sum_high;
     wire       stage2_cout;
 
-    // Stage 2 Logic: Add upper 4 bits using Stage 1 carry
-    assign {stage2_cout, stage2_sum_high} = reg_a_high + reg_b_high + reg_c4;
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -54,5 +52,6 @@ module pipelined_adder_8bit (
             cout <= stage2_cout;
         end
     end
-
+    // Stage 2 Logic: Add upper 4 bits using Stage 1 carry
+    assign {stage2_cout, stage2_sum_high} = reg_a_high + reg_b_high + reg_c4;
 endmodule
